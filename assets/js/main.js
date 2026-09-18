@@ -1,10 +1,8 @@
 /**
  * ==========================================================================
- * MAIN.JS - Logika Navigasi, Interaktivitas, & Efek UI Portofolio
- * Portfolio: Raul Danovan Harahap
+ * MAIN.JS - Interaksi Portofolio Futry Nadeges
  * ==========================================================================
  */
-
 document.addEventListener('DOMContentLoaded', () => {
   'use strict';
 
@@ -22,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
       menuIcon.classList.toggle('fa-bars');
       menuIcon.classList.toggle('fa-xmark');
     });
-
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenu.classList.add('hidden');
@@ -32,32 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 2. NAVBAR BLUR ON SCROLL & BACK TO TOP
+  // 2. NAVBAR BLUR ON SCROLL & BACK TO TOP BUTTON
   // --------------------------------------------------------------------------
   const backToTopBtn = document.getElementById('back-to-top');
-
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-
-    // Navbar background effect
     if (scrollY > 50) {
-      navbar.classList.add('py-3', 'shadow-lg', 'bg-[#090d16]/95', 'border-slate-800/80');
-      navbar.classList.remove('py-5', 'bg-[#090d16]/70', 'border-transparent');
+      navbar.classList.add('py-3', 'shadow-lg', 'shadow-black/20', 'border-pink-900/30', 'bg-[#1c131a]/95');
+      navbar.classList.remove('py-5', 'border-transparent', 'bg-[#1c131a]/70');
     } else {
-      navbar.classList.add('py-5', 'bg-[#090d16]/70', 'border-transparent');
-      navbar.classList.remove('py-3', 'shadow-lg', 'bg-[#090d16]/95', 'border-slate-800/80');
+      navbar.classList.add('py-5', 'border-transparent', 'bg-[#1c131a]/70');
+      navbar.classList.remove('py-3', 'shadow-lg', 'shadow-black/20', 'border-pink-900/30', 'bg-[#1c131a]/95');
     }
 
-    // Back to top button visibility
     if (backToTopBtn) {
       if (scrollY > 400) {
-        backToTopBtn.classList.replace('opacity-0', 'opacity-100');
-        backToTopBtn.classList.replace('translate-y-4', 'translate-y-0');
-        backToTopBtn.classList.replace('pointer-events-none', 'pointer-events-auto');
+        backToTopBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
       } else {
-        backToTopBtn.classList.replace('opacity-100', 'opacity-0');
-        backToTopBtn.classList.replace('translate-y-0', 'translate-y-4');
-        backToTopBtn.classList.replace('pointer-events-auto', 'pointer-events-none');
+        backToTopBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
       }
     }
   }, { passive: true });
@@ -67,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 3. ADVANCED SCROLL REVEAL (Animasi Muncul Halus)
+  // 3. SCROLL REVEAL ANIMATIONS
   // --------------------------------------------------------------------------
   const revealElements = document.querySelectorAll('.scroll-reveal');
   if ('IntersectionObserver' in window && revealElements.length > 0) {
@@ -84,44 +73,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --------------------------------------------------------------------------
-  // 4. ACTIVE LINK HIGHLIGHTING (PERBAIKAN FITUR PELACAKAN SCROLL)
+  // 4. ACTIVE LINK HIGHLIGHTING
   // --------------------------------------------------------------------------
   const sections = document.querySelectorAll('section[id], footer[id]');
   const desktopLinks = document.querySelectorAll('.desktop-nav-link');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
   if ('IntersectionObserver' in window && sections.length > 0) {
-    // Pengaturan ini membuat link berubah biru saat bagian (section) tepat berada di tengah layar
-    const navObserverOptions = { root: null, rootMargin: '-40% 0px -50% 0px', threshold: 0 };
-
     const navObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const currentId = entry.target.getAttribute('id');
 
-          // Reset styling ke default (abu-abu)
           desktopLinks.forEach(link => {
-            link.classList.remove('text-cyan-400', 'font-semibold', 'glow-text-cyan');
-            link.classList.add('text-slate-400');
-            // Jika id cocok, tambahkan efek biru & menyala
+            link.classList.remove('text-pink-400', 'font-semibold', 'glow-text-pink');
+            link.classList.add('text-slate-300');
             if (link.getAttribute('href') === `#${currentId}`) {
-              link.classList.add('text-cyan-400', 'font-semibold', 'glow-text-cyan');
-              link.classList.remove('text-slate-400');
+              link.classList.add('text-pink-400', 'font-semibold', 'glow-text-pink');
+              link.classList.remove('text-slate-300');
             }
           });
 
-          // Mobile styling tracking
           mobileLinks.forEach(link => {
-            link.classList.remove('text-cyan-400', 'bg-cyan-950/30', 'border', 'border-cyan-800/30');
+            link.classList.remove('text-pink-400', 'bg-pink-950/30', 'border', 'border-pink-800/30');
             link.classList.add('text-slate-300');
             if (link.getAttribute('href') === `#${currentId}`) {
-              link.classList.add('text-cyan-400', 'bg-cyan-950/30', 'border', 'border-cyan-800/30');
+              link.classList.add('text-pink-400', 'bg-pink-950/30', 'border', 'border-pink-800/30');
               link.classList.remove('text-slate-300');
             }
           });
         }
       });
-    }, navObserverOptions);
+    }, { root: null, rootMargin: '-40% 0px -50% 0px', threshold: 0 });
 
     sections.forEach(sec => navObserver.observe(sec));
   }
@@ -133,7 +116,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard.writeText(text).then(() => showToastMessage());
     } else {
-      // Fallback
       const temp = document.createElement('input');
       temp.value = text;
       document.body.appendChild(temp);
@@ -153,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     const toast = document.createElement('div');
     toast.className = 'toast';
-    toast.innerHTML = `<i class="fas fa-check-circle text-cyan-400"></i><span>Email berhasil disalin!</span>`;
+    toast.innerHTML = `<i class="fas fa-check-circle text-pink-400"></i><span>Email berhasil disalin!</span>`;
     container.appendChild(toast);
 
     setTimeout(() => toast.classList.add('show'), 10);
@@ -162,65 +144,53 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => toast.remove(), 300);
     }, 3000);
   }
-});
 
-// --------------------------------------------------------------------------
-// 6. IMAGE MODAL / LIGHTBOX (Sertifikat Preview)
-// --------------------------------------------------------------------------
-const modal = document.getElementById('image-modal');
-const modalImg = document.getElementById('modal-image');
-const modalClose = document.getElementById('modal-close');
-const modalBackdrop = document.getElementById('modal-backdrop');
-const certTriggers = document.querySelectorAll('.cert-trigger');
+  // --------------------------------------------------------------------------
+  // 6. IMAGE MODAL / LIGHTBOX (Preview Sertifikat)
+  // --------------------------------------------------------------------------
+  const modal = document.getElementById('image-modal');
+  const modalImg = document.getElementById('modal-image');
+  const modalClose = document.getElementById('modal-close');
+  const modalBackdrop = document.getElementById('modal-backdrop');
+  const certTriggers = document.querySelectorAll('.cert-trigger');
 
-if (modal && modalImg && certTriggers.length > 0) {
+  if (modal && modalImg && certTriggers.length > 0) {
 
-  // Fungsi Buka Modal
-  const openModal = (src) => {
-    modalImg.src = src; // Ambil src gambar yang di-klik
-    modal.classList.remove('hidden');
+    // Buka Modal
+    const openModal = (src) => {
+      modalImg.src = src;
+      modal.classList.remove('hidden');
+      void modal.offsetWidth; // Reflow for CSS animation
 
-    // Trigger reflow agar animasi CSS jalan
-    void modal.offsetWidth;
+      modal.classList.remove('opacity-0');
+      modalImg.classList.remove('scale-95');
+      modalImg.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+    };
 
-    modal.classList.remove('opacity-0');
-    modalImg.classList.remove('scale-95');
-    modalImg.classList.add('scale-100');
+    // Tutup Modal
+    const closeModal = () => {
+      modal.classList.add('opacity-0');
+      modalImg.classList.remove('scale-100');
+      modalImg.classList.add('scale-95');
+      document.body.style.overflow = '';
 
-    // Kunci layar agar background tidak bisa di-scroll
-    document.body.style.overflow = 'hidden';
-  };
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 300);
+    };
 
-  // Fungsi Tutup Modal
-  const closeModal = () => {
-    modal.classList.add('opacity-0');
-    modalImg.classList.remove('scale-100');
-    modalImg.classList.add('scale-95');
-
-    // Buka kunci layar scroll
-    document.body.style.overflow = '';
-
-    // Sembunyikan elemen setelah animasi selesai (300ms)
-    setTimeout(() => {
-      modal.classList.add('hidden');
-    }, 300);
-  };
-
-  // Pasang Event Listener ke semua gambar sertifikat
-  certTriggers.forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      openModal(trigger.src);
+    certTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => openModal(trigger.src));
     });
-  });
 
-  // Pasang Event Listener untuk menutup modal
-  modalClose.addEventListener('click', closeModal); // Klik tombol X
-  modalBackdrop.addEventListener('click', closeModal); // Klik area luar
+    modalClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
 
-  // Tutup menggunakan tombol Escape di keyboard
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-      closeModal();
-    }
-  });
-}
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  }
+});

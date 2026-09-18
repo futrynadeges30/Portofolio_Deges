@@ -1,32 +1,16 @@
 /* ==========================================================================
-   PORTFOLIO STYLES - RAUL DANOVAN HARAHAP
-   Tema: Dark Mode Futuristik (#0b0f19 / #090d16) dengan Aksen Cyan/Emerald/Violet
+   PORTFOLIO STYLES - FUTRY NADEGES ROHANA HARAHAP
+   Tema: Feminine Elegant, Plum Dark Mode with Rose Gold & Pink Soft Accents
    ========================================================================== */
 
-/* --------------------------------------------------------------------------
-   1. ROOT VARIABLES & GLOBAL SETUP
-   -------------------------------------------------------------------------- */
 :root {
-  --bg-primary: #090d16;
-  --bg-secondary: #0f172a;
-  --bg-card: rgba(15, 23, 42, 0.75);
-  --border-card: rgba(51, 65, 85, 0.5);
-
-  --accent-cyan: #06b6d4;
-  --accent-cyan-glow: rgba(6, 182, 212, 0.4);
-  --accent-emerald: #10b981;
-  --accent-emerald-glow: rgba(16, 185, 129, 0.4);
-  --accent-violet: #8b5cf6;
-  --accent-violet-glow: rgba(139, 92, 246, 0.35);
-
+  --bg-primary: #1c131a;
+  --bg-secondary: #2d1a24;
   --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
 }
 
 html {
   scroll-behavior: smooth;
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color-scheme: dark;
 }
 
@@ -37,56 +21,55 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   2. CUSTOM SCROLLBAR
+   CUSTOM SCROLLBAR
    -------------------------------------------------------------------------- */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #1c131a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #1e293b, #0f766e, #0e7490);
-  border-radius: 9999px;
-  border: 2px solid #090d16;
+  background: linear-gradient(180deg, #4c293c, #be185d);
+  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #334155, #14b8a6, #06b6d4);
+  background: linear-gradient(180deg, #831843, #f472b6);
 }
 
 /* --------------------------------------------------------------------------
-   3. BACKGROUND AMBIENT GLOW & FLOATING ANIMATIONS
+   AMBIENT GLOW & FLOATING ANIMATIONS
    -------------------------------------------------------------------------- */
-.ambient-glow-cyan,
-.ambient-glow-violet,
-.ambient-glow-emerald {
+.ambient-glow-rose,
+.ambient-glow-lavender,
+.ambient-glow-pink {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
 }
 
-.ambient-glow-cyan {
+.ambient-glow-rose {
   width: 32rem;
   height: 32rem;
-  background: radial-gradient(circle, rgba(6, 182, 212, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(251, 113, 133, 0.12) 0%, transparent 70%);
   filter: blur(50px);
 }
 
-.ambient-glow-violet {
+.ambient-glow-lavender {
   width: 34rem;
   height: 34rem;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.13) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(192, 132, 252, 0.1) 0%, transparent 70%);
   filter: blur(55px);
 }
 
-.ambient-glow-emerald {
+.ambient-glow-pink {
   width: 30rem;
   height: 30rem;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.12) 0%, transparent 70%);
   filter: blur(50px);
 }
 
@@ -96,11 +79,11 @@ body {
   }
 
   33% {
-    transform: translate(30px, -50px) scale(1.1);
+    transform: translate(30px, -40px) scale(1.05);
   }
 
   66% {
-    transform: translate(-20px, 20px) scale(0.9);
+    transform: translate(-20px, 20px) scale(0.95);
   }
 
   100% {
@@ -109,80 +92,125 @@ body {
 }
 
 .blob-float-1 {
-  animation: blobFloat 12s infinite ease-in-out;
+  animation: blobFloat 14s infinite ease-in-out;
 }
 
 .blob-float-2 {
-  animation: blobFloat 15s infinite ease-in-out reverse;
+  animation: blobFloat 18s infinite ease-in-out reverse;
 }
 
 .blob-float-3 {
-  animation: blobFloat 10s infinite ease-in-out 2s;
-}
-
-/* Grid background subtle pattern */
-.bg-grid-pattern {
-  background-size: 40px 40px;
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  animation: blobFloat 12s infinite ease-in-out 2s;
 }
 
 /* --------------------------------------------------------------------------
-   4. GLASSMORPHISM & UI COMPONENTS
+   FLORAL PETAL ANIMATION (Efek Kelopak Bunga Jatuh Elegan)
    -------------------------------------------------------------------------- */
-.glass-card {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.45);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+.petal {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: radial-gradient(circle at 30% 30%, #fbcfe8, #f472b6);
+  border-radius: 0% 100% 0% 100% / 0% 100% 0% 100%;
+  box-shadow: 0 0 10px rgba(244, 114, 182, 0.3);
+  animation: fallingPetal linear infinite;
+  opacity: 0.6;
 }
 
-.glass-card:hover {
-  border-color: rgba(6, 182, 212, 0.4);
-  box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.2);
+@keyframes fallingPetal {
+  0% {
+    transform: translate(0, -10vh) rotate(0deg) scale(0.8);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.8;
+  }
+
+  80% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translate(30vw, 110vh) rotate(360deg) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.p1 {
+  left: 10%;
+  animation-duration: 15s;
+  animation-delay: 0s;
+}
+
+.p2 {
+  left: 30%;
+  animation-duration: 20s;
+  animation-delay: -5s;
+  transform: scale(1.2);
+}
+
+.p3 {
+  left: 60%;
+  animation-duration: 18s;
+  animation-delay: -2s;
+}
+
+.p4 {
+  left: 80%;
+  animation-duration: 22s;
+  animation-delay: -10s;
+}
+
+.p5 {
+  left: 40%;
+  animation-duration: 25s;
+  animation-delay: -14s;
+  transform: scale(0.6);
+}
+
+.p6 {
+  left: 90%;
+  animation-duration: 16s;
+  animation-delay: -7s;
+}
+
+/* Grid background pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(244, 114, 182, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 114, 182, 0.03) 1px, transparent 1px);
+}
+
+/* --------------------------------------------------------------------------
+   GLASSMORPHISM & UI COMPONENTS
+   -------------------------------------------------------------------------- */
+.glass-card {
+  background: rgba(45, 26, 36, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s ease;
 }
 
 /* Profile Animations */
 .profile-glow-ring {
   position: absolute;
-  inset: -6px;
-  border-radius: 2rem;
-  background: linear-gradient(135deg, #06b6d4, #8b5cf6, #10b981, #06b6d4);
+  inset: -4px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f472b6, #fb7185, #c084fc, #f472b6);
   background-size: 300% 300%;
-  animation: gradientRotate 6s ease infinite;
-  filter: blur(8px);
-  opacity: 0.85;
-  transition: opacity 0.4s ease, filter 0.4s ease;
+  animation: gradientRotate 8s ease infinite;
+  filter: blur(10px);
+  opacity: 0.8;
+  transition: all 0.4s ease;
 }
 
 .group:hover .profile-glow-ring {
   opacity: 1;
-  filter: blur(14px);
+  filter: blur(16px);
+  inset: -8px;
 }
 
-.profile-border-frame {
-  position: absolute;
-  inset: -2px;
-  border-radius: 1.85rem;
-  background: linear-gradient(135deg, #06b6d4, #8b5cf6, #10b981);
-  background-size: 300% 300%;
-  animation: gradientRotate 6s ease infinite;
-  z-index: 1;
-}
-
-.profile-img-wrapper {
-  position: relative;
-  border-radius: 1.75rem;
-  overflow: hidden;
-  z-index: 2;
-  background: #0f172a;
-}
-
-/* --------------------------------------------------------------------------
-   5. NEON, GLOW UTILITY & ANIMATED TEXT
-   -------------------------------------------------------------------------- */
 @keyframes gradientRotate {
   0% {
     background-position: 0% 50%;
@@ -212,35 +240,32 @@ body {
 }
 
 .animate-gradient {
-  animation: textGradient 4s linear infinite;
+  animation: textGradient 5s linear infinite;
 }
 
-.glow-text-cyan {
-  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+.glow-text-pink {
+  text-shadow: 0 0 20px rgba(244, 114, 182, 0.4);
 }
 
 /* Buttons */
-.glow-btn-cyan {
+.glow-btn-pink {
   position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+  transition: all 0.3s ease;
 }
 
-.glow-btn-cyan:hover {
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.6), 0 0 45px rgba(6, 182, 212, 0.25);
+.glow-btn-pink:hover {
   transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(244, 114, 182, 0.6);
 }
 
 .glow-btn-outline {
-  position: relative;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid rgba(6, 182, 212, 0.35);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(244, 114, 182, 0.3);
 }
 
 .glow-btn-outline:hover {
-  border-color: rgba(6, 182, 212, 0.9);
-  background: rgba(6, 182, 212, 0.08);
-  box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  border-color: rgba(244, 114, 182, 0.8);
+  background: rgba(244, 114, 182, 0.1);
   transform: translateY(-2px);
 }
 
@@ -252,7 +277,7 @@ body {
   }
 
   50% {
-    transform: translateY(-6px);
+    transform: translateY(-5px);
   }
 }
 
@@ -260,24 +285,13 @@ body {
   animation: floatBadge 4s ease-in-out infinite;
 }
 
-.skill-tag {
-  transition: all 0.25s ease;
-}
-
-.skill-tag:hover {
-  transform: translateY(-3px) scale(1.05);
-  border-color: rgba(6, 182, 212, 0.6);
-  box-shadow: 0 4px 15px -2px rgba(6, 182, 212, 0.3);
-}
-
 /* --------------------------------------------------------------------------
-   6. SCROLL REVEAL ANIMATIONS (Smooth Stagger)
+   SCROLL REVEAL & 3D TILT CARDS
    -------------------------------------------------------------------------- */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(30px);
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  will-change: opacity, transform;
 }
 
 .scroll-reveal.is-revealed {
@@ -297,56 +311,37 @@ body {
   transition-delay: 300ms;
 }
 
-.delay-400 {
-  transition-delay: 400ms;
-}
-
-.delay-500 {
-  transition-delay: 500ms;
-}
-
-/* --------------------------------------------------------------------------
-   7. 3D TILT CARDS & PARALLAX
-   -------------------------------------------------------------------------- */
 .tilt-card-wrapper {
   perspective: 1000px;
-  /* Jarak perspektif 3D */
   cursor: pointer;
   display: block;
 }
 
 .tilt-card {
   transform-style: preserve-3d;
-  will-change: transform;
-  border-radius: 1.25rem;
-  position: relative;
-  overflow: hidden;
-  /* Kunci kemulusan (smoothness) anti-patah-patah ada pada baris ini */
   transition: transform 0.15s ease-out;
+  position: relative;
+  pointer-events: none;
 }
 
-/* Layer Kedalaman Parallax 3D (Elemen dalam kartu jadi terasa melayang) */
+.tilt-card-wrapper:hover .tilt-card {
+  transition: transform 0.1s ease-out;
+  box-shadow: 0 15px 35px -5px rgba(244, 114, 182, 0.15);
+}
+
 .tilt-element-depth {
-  transform: translateZ(30px);
+  transform: translateZ(25px);
   transform-style: preserve-3d;
 }
 
 .tilt-banner-depth {
-  transform: translateZ(15px);
-  transform-style: preserve-3d;
-}
-
-.tilt-buttons-depth {
-  transform: translateZ(40px);
+  transform: translateZ(10px);
   transform-style: preserve-3d;
 }
 
 .tilt-glare {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   pointer-events: none;
   opacity: 0;
   z-index: 20;
@@ -355,7 +350,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   8. TOAST NOTIFICATION STYLING
+   TOAST NOTIFICATION
    -------------------------------------------------------------------------- */
 .toast-container {
   position: fixed;
@@ -369,19 +364,19 @@ body {
 }
 
 .toast {
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(45, 26, 36, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(6, 182, 212, 0.5);
-  color: #f8fafc;
+  border: 1px solid rgba(244, 114, 182, 0.5);
+  color: #fff;
   padding: 0.85rem 1.4rem;
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6), 0 0 15px rgba(6, 182, 212, 0.3);
+  border-radius: 99px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   gap: 0.75rem;
   transform: translateY(20px);
   opacity: 0;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.3s ease;
   font-size: 0.9rem;
 }
 
@@ -390,9 +385,9 @@ body {
   opacity: 1;
 }
 
-/* ==========================================================================
-   IMAGE PREVIEW MODAL STYLES
-   ========================================================================== */
+/* --------------------------------------------------------------------------
+   IMAGE PREVIEW MODAL STYLES (Lightbox Sertifikat)
+   -------------------------------------------------------------------------- */
 #image-modal {
   will-change: opacity;
 }
@@ -401,14 +396,12 @@ body {
   will-change: transform;
 }
 
-/* Modal Open State */
 #image-modal:not(.hidden) {
   display: block;
 }
 
-/* Responsive Image Adjustments for small screens */
 @media (max-width: 640px) {
   #modal-image {
-    max-h: 75vh;
+    max-height: 75vh;
   }
 }
